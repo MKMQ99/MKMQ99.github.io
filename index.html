@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>Hexo</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Hexo"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Hexo"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="website"><meta property="og:title" content="Hexo"><meta property="og:url" content="http://example.com/"><meta property="og:site_name" content="Hexo"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:author" content="John Doe"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com"},"headline":"Hexo","image":["http://example.com/img/og_image.png"],"author":{"@type":"Person","name":"John Doe"},"publisher":{"@type":"Organization","name":"Hexo","logo":{"@type":"ImageObject"}},"description":""}</script><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><!--!--><!-- hexo injector head_end start --><script>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Hexo</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Hexo"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Hexo"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="Hexo"><meta property="og:url" content="http://example.com/"><meta property="og:site_name" content="Hexo"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:author" content="John Doe"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com"},"headline":"Hexo","image":["http://example.com/img/og_image.png"],"author":{"@type":"Person","name":"John Doe"},"publisher":{"@type":"Organization","name":"Hexo","logo":{"@type":"ImageObject","url":{"text":"MK's Blog"}}},"description":""}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
   (function () {
       function switchTab() {
           if (!location.hash) {
@@ -29,351 +29,7 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-1-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Hexo</a></div><div class="navbar-menu"><div class="navbar-end"></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-04-03T11:28:01.000Z" title="2023/4/3 19:28:01">2023-04-03</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-04-03T11:30:17.282Z" title="2023/4/3 19:30:17">2023-04-03</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/">GDB学习</a></p><div class="content"><h2 id="1-调试入门及基础篇"><a href="#1-调试入门及基础篇" class="headerlink" title="1 调试入门及基础篇"></a>1 调试入门及基础篇</h2><h3 id="1-1-Linux-C-x2F-C-调试准备工作"><a href="#1-1-Linux-C-x2F-C-调试准备工作" class="headerlink" title="1-1 Linux C&#x2F;C++调试准备工作"></a>1-1 Linux C&#x2F;C++调试准备工作</h3><p>Ubuntu: apt install gcc g++ make gdb</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc,<span class="type">char</span>**argv)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> itest=<span class="number">100</span>;</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> *str=<span class="string">&quot;this is a test&quot;</span>;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;itest is &quot;</span> &lt;&lt; itest &lt;&lt; <span class="string">&quot;,str is &quot;</span> &lt;&lt; str &lt;&lt; std::endl;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;参数为:&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; argc; i++)&#123;</span><br><span class="line">        std::cout &lt;&lt; argv[i] &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Hello world\n&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>生成可调试的代码：g++ -g test.cpp -o test</p>
-<p>进行调试：gdb test</p>
-<p>list：显示源码，一次默认显示10行</p>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/1.png"></p>
-<p>break&#x2F;b：插入断点</p>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/2.png"></p>
-<p>info&#x2F;i：查看信息</p>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/3.png"></p>
-<p>run&#x2F;r：执行程序</p>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/4.png"></p>
-<p>next&#x2F;n：执行一步</p>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/5.png"></p>
-<p>print&#x2F;p：查看变量名</p>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/6.png"></p>
-<p>locals：看局部变量</p>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/7.png"></p>
-<p>continue&#x2F;c：继续执行，直到下一个断点</p>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/8.png"></p>
-<h3 id="1-2-启动调试"><a href="#1-2-启动调试" class="headerlink" title="1-2 启动调试"></a>1-2 启动调试</h3><h4 id="1-2-1-启动调试并传入参数"><a href="#1-2-1-启动调试并传入参数" class="headerlink" title="1-2-1 启动调试并传入参数"></a>1-2-1 启动调试并传入参数</h4><ul>
-<li><p>gdb –args &lt;exe&gt;</p>
-</li>
-<li><p>set args &lt;args&gt;</p>
-</li>
-<li><p>r &lt;args&gt;</p>
-</li>
-</ul>
-<p>gdb –args &lt;exe&gt;</p>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/9.png"></p>
-<p>set args &lt;args&gt;</p>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/10.png"></p>
-<p>r &lt;args&gt;</p>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/11.png"></p>
-<h4 id="1-2-2-附加到进程，适用于已经启动的程序"><a href="#1-2-2-附加到进程，适用于已经启动的程序" class="headerlink" title="1-2-2 附加到进程，适用于已经启动的程序"></a>1-2-2 附加到进程，适用于已经启动的程序</h4><ul>
-<li>gdb attach &lt;pid&gt;</li>
-<li>gdb –pid &lt;pid&gt;</li>
-</ul>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/12.png"></p>
-<p>gdb attach &lt;pid&gt;</p>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/13.png"></p>
-<p>gdb –pid &lt;pid&gt;</p>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/14.png"></p>
-<h4 id="1-2-3-逐过程执行"><a href="#1-2-3-逐过程执行" class="headerlink" title="1-2-3 逐过程执行"></a>1-2-3 逐过程执行</h4><p>单步执行（step-over），遇到函数跳过函数</p>
-<p>next&#x2F;n</p>
-<h4 id="1-2-4-逐语句执行"><a href="#1-2-4-逐语句执行" class="headerlink" title="1-2-4 逐语句执行"></a>1-2-4 逐语句执行</h4><p>单步执行（step-into），遇到函数进入函数</p>
-<p>step&#x2F;s</p>
-<h4 id="1-2-5-退出当前函数"><a href="#1-2-5-退出当前函数" class="headerlink" title="1-2-5 退出当前函数"></a>1-2-5 退出当前函数</h4><p>finish</p>
-<h4 id="1-2-6-退出调试"><a href="#1-2-6-退出调试" class="headerlink" title="1-2-6 退出调试"></a>1-2-6 退出调试</h4><p>detach（分离）</p>
-<p>quit&#x2F;q（退出）</p>
-<h3 id="1-3-调试断点管理"><a href="#1-3-调试断点管理" class="headerlink" title="1-3 调试断点管理"></a>1-3 调试断点管理</h3><h4 id="1-3-1-设置断点"><a href="#1-3-1-设置断点" class="headerlink" title="1-3-1 设置断点"></a>1-3-1 设置断点</h4><ul>
-<li>break&#x2F;b 文件名:行号，在源代码某一行设置断点</li>
-<li>b 函数名：为函数设置断点，同名函数会怎么样？（都添加断点）</li>
-<li>rb 正则表达式：为满足正则表达式的函数设置断点</li>
-<li>b 断点条件：设置条件断点</li>
-<li>tb 断点：设置临时断点（只命中一次）</li>
-</ul>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/15.png"></p>
-<h4 id="1-3-2-查看-x2F-禁用-x2F-删除断点"><a href="#1-3-2-查看-x2F-禁用-x2F-删除断点" class="headerlink" title="1-3-2 查看&#x2F;禁用&#x2F;删除断点"></a>1-3-2 查看&#x2F;禁用&#x2F;删除断点</h4><ul>
-<li>i b：查看所有断点</li>
-<li>disable&#x2F;enable 断点编号：禁用，启用断点</li>
-<li>delete 断点：删除断点</li>
-</ul>
-<h3 id="1-4-变量查看与修改"><a href="#1-4-变量查看与修改" class="headerlink" title="1-4 变量查看与修改"></a>1-4 变量查看与修改</h3><h4 id="1-4-1-变量查看"><a href="#1-4-1-变量查看" class="headerlink" title="1-4-1 变量查看"></a>1-4-1 变量查看</h4><ul>
-<li>info args：查看函数参数</li>
-<li>print&#x2F;p 变量名：查看变量的值</li>
-<li>set print null-stop：设置字符串的显示规则</li>
-<li>set print pretty：显示结构体</li>
-<li>set print array on：显示数组</li>
-<li>使用gdb内嵌函数，比如sizeof,strlen,strcmp等</li>
-</ul>
-<p>info args &amp;&amp; print&#x2F;p 变量名</p>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/16.png"></p>
-<p>set print null-stop</p>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/17.png"></p>
-<p>set print pretty</p>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/18.png"></p>
-<p>set print array on</p>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/19.png"></p>
-<p>使用gdb内嵌函数</p>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/20.png"></p>
-<h4 id="1-4-2-变量更改"><a href="#1-4-2-变量更改" class="headerlink" title="1-4-2 变量更改"></a>1-4-2 变量更改</h4><ul>
-<li>p 变量&#x3D;修改值：包括普通变量，结构体，类等</li>
-</ul>
-<h3 id="1-5-内存查看与修改"><a href="#1-5-内存查看与修改" class="headerlink" title="1-5 内存查看与修改"></a>1-5 内存查看与修改</h3><h4 id="1-5-1-内存查看"><a href="#1-5-1-内存查看" class="headerlink" title="1-5-1 内存查看"></a>1-5-1 内存查看</h4><ul>
-<li>x &#x2F;选项 内存地址<ul>
-<li>x &#x2F;s str</li>
-<li>x &#x2F;d</li>
-<li>x &#x2F;4d</li>
-<li>x &#x2F;16s 结构体变量地址</li>
-</ul>
-</li>
-</ul>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/21.png"></p>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/22.png"></p>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/23.png"></p>
-<h4 id="1-5-2-内存修改"><a href="#1-5-2-内存修改" class="headerlink" title="1-5-2 内存修改"></a>1-5-2 内存修改</h4><ul>
-<li>set 地址&#x3D;修改值</li>
-</ul>
-<h3 id="1-6-寄存器查看与修改"><a href="#1-6-寄存器查看与修改" class="headerlink" title="1-6 寄存器查看与修改"></a>1-6 寄存器查看与修改</h3><h4 id="1-6-1-查看寄存器"><a href="#1-6-1-查看寄存器" class="headerlink" title="1-6-1 查看寄存器"></a>1-6-1 查看寄存器</h4><ul>
-<li>i registers</li>
-<li>i r rdi</li>
-<li>…</li>
-</ul>
-<p>6个参数以内放寄存器，多的放栈</p>
-<table>
-<thead>
-<tr>
-<th align="center">寄存器</th>
-<th align="center">函数参数</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">rdi</td>
-<td align="center">第一个参数</td>
-</tr>
-<tr>
-<td align="center">rsi</td>
-<td align="center">第二个参数</td>
-</tr>
-<tr>
-<td align="center">rdx</td>
-<td align="center">第三个参数</td>
-</tr>
-<tr>
-<td align="center">rcx</td>
-<td align="center">第四个参数</td>
-</tr>
-<tr>
-<td align="center">r8</td>
-<td align="center">第五个参数</td>
-</tr>
-<tr>
-<td align="center">r9</td>
-<td align="center">第六个参数</td>
-</tr>
-</tbody></table>
-<h4 id="1-6-2-修改寄存器"><a href="#1-6-2-修改寄存器" class="headerlink" title="1-6-2 修改寄存器"></a>1-6-2 修改寄存器</h4><p>pc&#x2F;rip (problem counter)寄存器，保存程序下一条要执行的指令，通过修改pc寄存器来改变程序执行的流程</p>
-<ul>
-<li>set var $pc&#x3D;xxx</li>
-<li>p $rip&#x3D;xxx</li>
-</ul>
-<p>info line 行数：查看汇编代码地址</p>
-<h3 id="1-7-源代码管理、查看、搜索"><a href="#1-7-源代码管理、查看、搜索" class="headerlink" title="1-7 源代码管理、查看、搜索"></a>1-7 源代码管理、查看、搜索</h3><h4 id="1-7-1-源代码管理"><a href="#1-7-1-源代码管理" class="headerlink" title="1-7-1 源代码管理"></a>1-7-1 源代码管理</h4><ul>
-<li>list&#x2F;l：显示源代码，默认显示10行（l - ：向前显示）</li>
-<li>set listsize xx：设置每次显示的行数</li>
-<li>list test_fun：查看指定函数代码</li>
-<li>list main.cpp:15：查看指定文件指定行代码</li>
-</ul>
-<h4 id="1-7-2-搜索源代码"><a href="#1-7-2-搜索源代码" class="headerlink" title="1-7-2 搜索源代码"></a>1-7-2 搜索源代码</h4><ul>
-<li>search 正则表达式</li>
-<li>forward-search 正则表达式</li>
-<li>reverse-search 正则表达式</li>
-</ul>
-<h4 id="1-7-3-设置源代码搜索目录"><a href="#1-7-3-设置源代码搜索目录" class="headerlink" title="1-7-3 设置源代码搜索目录"></a>1-7-3 设置源代码搜索目录</h4><p>show directories：查看当前搜索目录</p>
-<p>directory path：添加源代码搜索目录</p>
-<h3 id="1-8-函数调用栈管理"><a href="#1-8-函数调用栈管理" class="headerlink" title="1-8 函数调用栈管理"></a>1-8 函数调用栈管理</h3><h4 id="1-8-1-调用栈管理"><a href="#1-8-1-调用栈管理" class="headerlink" title="1-8-1 调用栈管理"></a>1-8-1 调用栈管理</h4><ul>
-<li>backtrace&#x2F;bt：查看栈回溯信息</li>
-<li>frame&#x2F;f n：切换栈帧</li>
-<li>info f n(第几号栈帧)：查看栈帧信息</li>
-</ul>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/24.png"></p>
-<h2 id="2-调试中级篇"><a href="#2-调试中级篇" class="headerlink" title="2 调试中级篇"></a>2 调试中级篇</h2><h3 id="2-1-观察点使用"><a href="#2-1-观察点使用" class="headerlink" title="2-1 观察点使用"></a>2-1 观察点使用</h3><p>观察点是一个特殊的断点，当表达式的值发生变化时它将中断下来。表达式可以是一个变量的值，也可以包含由运算符组合的一个或多个变量的值，例如a + b。有时被称为数据断点(VC里面就称之为数据断点)</p>
-<ul>
-<li>watch：写观察点，写变量的时候停下来，hardware watchpoint，不影响性能</li>
-<li>rwatch：读观察点</li>
-<li>awatch：读写观察点</li>
-<li>info watch：查看观察点</li>
-<li>delete&#x2F;disable&#x2F;enable：删除&#x2F;禁用&#x2F;启用观察点</li>
-</ul>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/25.png"></p>
-<p>表达式例子：</p>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/27.png"></p>
-<p>可指定线程：watch 变量名&#x2F;表达式 thread 线程号</p>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/26.png"></p>
-<h3 id="2-2-捕获点使用"><a href="#2-2-捕获点使用" class="headerlink" title="2-2 捕获点使用"></a>2-2 捕获点使用</h3><p>捕获点是一个特殊的断点，命令语法为：catch event<br>即捕获到event这个事件的时候，程序就会中断下来</p>
-<ul>
-<li>catch assert – Catch failed Ada assertions, when raised.</li>
-<li>catch catch – Catch an exception, when caught.</li>
-<li>catch exception – Catch Ada exceptions, when raised.</li>
-<li>catch exec – Catch calls to exec.</li>
-<li>catch fork – Catch calls to fork.</li>
-<li>catch handlers – Catch Ada exceptions, when handled.</li>
-<li>catch load – Catch loads of shared libraries.</li>
-<li>catch rethrow – Catch an exception, when rethrown.</li>
-<li>catch signal - Catch signals by their names and&#x2F;or numbers.</li>
-<li>catch syscall – Catch system calls by their names, groups and&#x2F;ornumbers.</li>
-<li>catch throw – Catch an exception, when thrown.</li>
-<li>catch unload – Catch unloads of shared libraries.</li>
-<li>catch vfork – Catch calls to vfork.</li>
-</ul>
-<h3 id="2-3-为断点执行命令"><a href="#2-3-为断点执行命令" class="headerlink" title="2-3 为断点执行命令"></a>2-3 为断点执行命令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">commands 断点号</span><br><span class="line">xxx</span><br><span class="line">xxx</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-<p>不必每次在断点停下来的时候手动查看值</p>
-<p>要删除的话直接commands不输入命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">commands 断点号</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-<p>导出断点信息：save breakpoints 文件名</p>
-<p>加载断点信息：source 文件名</p>
-<h3 id="2-4-gdb多窗口管理"><a href="#2-4-gdb多窗口管理" class="headerlink" title="2-4 gdb多窗口管理"></a>2-4 gdb多窗口管理</h3><p>Text User Interface（TUI）</p>
-<ul>
-<li><p>layout src：显示源码窗口</p>
-</li>
-<li><p>layout asm：显示汇编窗口</p>
-</li>
-<li><p>layout reg：显示寄存器窗口</p>
-</li>
-<li><p>layout split：切分窗口</p>
-</li>
-<li><p>focus&#x2F;fs src&#x2F;arm&#x2F;reg：切换窗口焦点</p>
-</li>
-<li><p>info win：查看当前拥有焦点的窗口</p>
-</li>
-<li><p>ctrl+x+a：退出窗口模式</p>
-</li>
-</ul>
-<h3 id="2-5-查看对象类型"><a href="#2-5-查看对象类型" class="headerlink" title="2-5 查看对象类型"></a>2-5 查看对象类型</h3><p>查看结构体，类，派生类等</p>
-<ul>
-<li>whatis</li>
-<li>ptype &#x2F;r &#x2F;o &#x2F;m &#x2F;t</li>
-<li>i variables</li>
-<li>set print object on</li>
-</ul>
-<h3 id="2-6-多线程调试管理"><a href="#2-6-多线程调试管理" class="headerlink" title="2-6 多线程调试管理"></a>2-6 多线程调试管理</h3><ul>
-<li>info threads：查看所有线程信息</li>
-<li>thread find 地址&#x2F;LWP&#x2F;线程名（正则表达式)：查找线程</li>
-<li>thread num：切换线程</li>
-<li>thread name：设置当前线程名字</li>
-<li>b 断点地址 thread id：为线程设置断点</li>
-<li>thread apply (多个)线程号 gdb命令：为线程执行命令（避免了切换线程）</li>
-<li>set print thread-events on|off：设置是否打印线程日志</li>
-</ul>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/28.png"></p>
-<h3 id="2-7-执行外部命令以及保存命令及输出"><a href="#2-7-执行外部命令以及保存命令及输出" class="headerlink" title="2-7 执行外部命令以及保存命令及输出"></a>2-7 执行外部命令以及保存命令及输出</h3><ul>
-<li>shell&#x2F;!：执行shell命令</li>
-<li>pipe&#x2F;| gdb命令 | grep 条件：对gdb输出进行筛选</li>
-<li>set logging on&#x2F;off：启用&#x2F;禁用结果输出</li>
-<li>set logging file filename：设置输出文件</li>
-<li>set logging overwrite：覆盖输出文件，默认为追加</li>
-</ul>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/29.png"></p>
-<h2 id="3-调试高级篇"><a href="#3-调试高级篇" class="headerlink" title="3 调试高级篇"></a>3 调试高级篇</h2><h3 id="3-1-跳转执行-任意执行代码"><a href="#3-1-跳转执行-任意执行代码" class="headerlink" title="3-1 跳转执行-任意执行代码"></a>3-1 跳转执行-任意执行代码</h3><ul>
-<li>jump&#x2F;j location：即在指定位置恢复执行，如果存在断点，执行到指定位置时将中断下来。如果没有断点，则不会停下来，因此，我们通常会在指定位置设置一个断点。跳转命令不会更改当前堆栈帧、堆栈指针、程序计数器以外的任何寄存器。</li>
-</ul>
-<h3 id="3-2-反向执行-调试中的undo"><a href="#3-2-反向执行-调试中的undo" class="headerlink" title="3-2 反向执行-调试中的undo"></a>3-2 反向执行-调试中的undo</h3><ul>
-<li>record：进行记录</li>
-<li>reverse-next：反向运行到上一次被执行的源代码行，但是不进入函数</li>
-<li>reverse-finish：反向运行程序回到调用当前函数的地方</li>
-<li>record-stop：结束记录</li>
-</ul>
-<p>不能用于IO操作</p>
-<h3 id="3-3-调试子进程"><a href="#3-3-调试子进程" class="headerlink" title="3-3 调试子进程"></a>3-3 调试子进程</h3><ul>
-<li>set follow-fork-mode child&#x2F;parent：选择调试父进程还是子进程，默认父进程</li>
-<li>set detach-on-fork off&#x2F;on</li>
-<li>i inferiors：查看进程信息</li>
-<li>inferiors n：切换进程</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center">follow-fork-mode</th>
-<th align="center"><strong>detach-on-fork</strong></th>
-<th align="center"><strong>说明</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">parent</td>
-<td align="center">on</td>
-<td align="center">只调试主进程( GDB 默认)</td>
-</tr>
-<tr>
-<td align="center">child</td>
-<td align="center">on</td>
-<td align="center">只调试子进程</td>
-</tr>
-<tr>
-<td align="center">parent</td>
-<td align="center">off</td>
-<td align="center">同时调试两个进程, gdb 跟主进程, 子进程 block 在 fork 位置</td>
-</tr>
-<tr>
-<td align="center">child</td>
-<td align="center">off</td>
-<td align="center">同时调试两个进程, gdb 跟子进程, 主进程 block 在 fork 位置</td>
-</tr>
-</tbody></table>
-<h3 id="3-4-多进程调试"><a href="#3-4-多进程调试" class="headerlink" title="3-4 多进程调试"></a>3-4 多进程调试</h3><p>先要将进程都attach进来</p>
-<ul>
-<li><p>attach pid</p>
-</li>
-<li><p>set schedule-multiple on</p>
-</li>
-<li><p>detach inferior n</p>
-</li>
-</ul>
-<h3 id="3-5-调试时调用内部、外部函数"><a href="#3-5-调试时调用内部、外部函数" class="headerlink" title="3-5 调试时调用内部、外部函数"></a>3-5 调试时调用内部、外部函数</h3><p>p表达式：求表达式的值并显示结果值。表达式可以包括对正在调试的程序中的函数的调用，即使函数返回值是void，也会显示。</p>
-<p>call 表达式：求表达式的值并显示结果值，如果是函数调用，返回值是void的话，不显示void返回值。</p>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/30.png"></p>
-<h3 id="3-6-调试时跳过指定函数"><a href="#3-6-调试时跳过指定函数" class="headerlink" title="3-6 调试时跳过指定函数"></a>3-6 调试时跳过指定函数</h3><p>指用step不会进入函数</p>
-<ul>
-<li>skip 函数名</li>
-<li>skip file 文件名：文件中的函数都会被跳过</li>
-<li>skip -gfi 通配符：跳过满足通配符的文件</li>
-</ul>
-<h3 id="3-7-制作、调试发行版"><a href="#3-7-制作、调试发行版" class="headerlink" title="3-7 制作、调试发行版"></a>3-7 制作、调试发行版</h3><ul>
-<li>去掉 -g 参数进行make（自己需要保留有调试信息的版本，所以要make两次）</li>
-<li>make Debug版本，然后使用 strip -g release-section -o release 命令去掉调试信息（只要make一次）</li>
-<li>gdb –symbol&#x3D;release-section -exec&#x3D;release</li>
-<li>objcopy –only-keep-debug release-section debug.sym：生成只有调试信息的文件，然后 gdb –symbol&#x3D;debug.sym -exec&#x3D;release</li>
-<li>gdb调试release版core dump文件：gdb release-section rel.core</li>
-</ul>
-<h3 id="3-8-软件补丁制作-直接编辑二进制程序"><a href="#3-8-软件补丁制作-直接编辑二进制程序" class="headerlink" title="3-8 软件补丁制作-直接编辑二进制程序"></a>3-8 软件补丁制作-直接编辑二进制程序</h3><ul>
-<li>gdb –write 可执行文件：修改可执行文件</li>
-<li>disassemble查看反汇编代码，例：disassemble &#x2F;mr check_some</li>
-<li>p或者set修改机器码，例：set {unsigned char}0x00000000000011b4&#x3D;101</li>
-</ul>
-<h2 id="4-调试实战篇"><a href="#4-调试实战篇" class="headerlink" title="4 调试实战篇"></a>4 调试实战篇</h2><h3 id="4-1-内存泄漏检测"><a href="#4-1-内存泄漏检测" class="headerlink" title="4-1 内存泄漏检测"></a>4-1 内存泄漏检测</h3><ul>
-<li>call malloc_stats()</li>
-<li>call malloc_info(0,stdout)</li>
-</ul>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/31.png"></p>
-<p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/32.png"></p>
-<h3 id="4-2-gcc检测各种内存问题检查：泄漏，栈溢出，野指针等"><a href="#4-2-gcc检测各种内存问题检查：泄漏，栈溢出，野指针等" class="headerlink" title="4-2 gcc检测各种内存问题检查：泄漏，栈溢出，野指针等"></a>4-2 gcc检测各种内存问题检查：泄漏，栈溢出，野指针等</h3><p><strong>gcc选项 -fsanitize&#x3D;address</strong><br>检查内存泄漏<br>检查堆溢出<br>检查栈溢出<br>检查全局内存溢出<br>检查释放后再使用</p>
-<h3 id="4-3-远程调试"><a href="#4-3-远程调试" class="headerlink" title="4-3 远程调试"></a>4-3 远程调试</h3><p>1.服务器端&#x2F;被调试机：<br>安装 gdb server：apt install gdb<br>server 启动 gdbserver</p>
-<p>2.客户端&#x2F;调试机<br>gdb远程连接并进行调试</p>
-<h3 id="4-4-多线程死锁调试"><a href="#4-4-多线程死锁调试" class="headerlink" title="4-4 多线程死锁调试"></a>4-4 多线程死锁调试</h3><p>分析死锁最常用的命令：thread、bt、f、p等</p>
-<p>死锁的条件：</p>
-<ul>
-<li>互斥条件</li>
-<li>保持和请求条件</li>
-<li>不可剥夺条件</li>
-<li>循环等待条件</li>
-</ul>
-<p>解决死锁的方式：</p>
-<ul>
-<li>顺序使用锁</li>
-<li>控制锁的作用范围</li>
-<li>可以使用超时机制</li>
-</ul>
-<h3 id="4-5-核心转储（core-dump）基础"><a href="#4-5-核心转储（core-dump）基础" class="headerlink" title="4-5 核心转储（core dump）基础"></a>4-5 核心转储（core dump）基础</h3><p>​		Linux core dump：一般称之为核心转储、内核转储，我们统称为转储文件是某个时刻某个进程的内存信息映射，即包含了生成转储文件时该进程的整个内存信息以及寄存器等信息。转储文件可以是某个进程的，也可以是整个系统的。可以是进程活着的时候生成的，也可以是进程或者系统崩溃的时候自动生成的。<br>​		为活着的进程创建core dump文件一般可以通过gdb来生成，使用gdb把进程attach进来以后，执行generate-core-file或者gcore命今来生成core dump文件。<br>​		我们更多时候是对崩溃产生的core dump文件进行分析。</p>
-<p>​		崩溃时自动生成core文件，需要将 ulimit -c 设置为 unlimted，文件名由&#x2F;proc&#x2F;sys&#x2F;kernel&#x2F;core_pattern决定</p>
-<p>​		<strong>查看问题：gdb 可执行文件 core文件</strong></p>
-<h3 id="4-6-无调试符号core-dump分析"><a href="#4-6-无调试符号core-dump分析" class="headerlink" title="4-6 无调试符号core dump分析"></a>4-6 无调试符号core dump分析</h3><p>不能用p打印变量，但可以查看寄存器，查看内存地址的值</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-04-03T10:52:02.739Z" title="2023/4/3 18:52:02">2023-04-03</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-04-03T10:52:02.739Z" title="2023/4/3 18:52:02">2023-04-03</time></span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/04/03/hello-world/">Hello World</a></p><div class="content"><p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">MK&#039;s Blog</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item is-active" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-04-03T11:28:01.000Z" title="2023/4/3 19:28:01">2023-04-03</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-04-04T02:52:40.947Z" title="2023/4/4 10:52:40">2023-04-04</time></span><span class="level-item">19 minutes read (About 2859 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/">GDB学习</a></p><div class="content"><p><img src="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/0.png"></p></div><a class="article-more button is-small is-size-7" href="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/#more">Read more</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-04-03T10:52:02.739Z" title="2023/4/3 18:52:02">2023-04-03</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-04-03T10:52:02.739Z" title="2023/4/3 18:52:02">2023-04-03</time></span><span class="level-item">a minute read (About 123 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/04/03/hello-world/">Hello World</a></p><div class="content"><p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
@@ -386,11 +42,48 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-</div></article></div></div><!--!--><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">Hexo</a><p class="is-size-7"><span>&copy; 2023 John Doe</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+</div></article></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="MK"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">MK</p><p class="is-size-6 is-block">MKMQ99</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Shanghai</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">2</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tag</p><a href="/tags"><p class="title">1</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/MKMQ99" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/MKMQ99"><i class="fab fa-github"></i></a></div></div></div><!--!--><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-03T11:28:01.000Z">2023-04-03</time></p><p class="title"><a href="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/">GDB学习</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-03T10:52:02.739Z">2023-04-03</time></p><p class="title"><a href="/2023/04/03/hello-world/">Hello World</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">MK&#039;s Blog</a><p class="is-size-7"><span>&copy; 2023 John Doe</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,
                     fold: 'unfolded'
                 }
             }
-        };</script><script src="/js/column.js"></script><!--!--><script src="/js/main.js" defer></script><!--!--></body></html>
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
