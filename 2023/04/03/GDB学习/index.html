@@ -1,134 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  
-  <title>GDB学习 | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="1 调试入门及基础篇1-1 Linux C&#x2F;C++调试准备工作Ubuntu: apt install gcc g++ make gdb 123456789101112#include&lt;iostream&gt;int main(int argc,char**argv)&amp;#123;    int itest&#x3D;100;    const char *str&#x3D;&quot;this is a">
-<meta property="og:type" content="article">
-<meta property="og:title" content="GDB学习">
-<meta property="og:url" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1 调试入门及基础篇1-1 Linux C&#x2F;C++调试准备工作Ubuntu: apt install gcc g++ make gdb 123456789101112#include&lt;iostream&gt;int main(int argc,char**argv)&amp;#123;    int itest&#x3D;100;    const char *str&#x3D;&quot;this is a">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/1.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/2.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/3.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/4.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/5.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/6.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/7.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/8.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/9.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/10.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/11.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/12.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/13.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/14.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/15.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/16.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/17.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/18.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/19.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/20.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/21.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/22.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/23.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/24.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/25.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/27.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/26.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/28.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/29.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/30.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/31.png">
-<meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/32.png">
-<meta property="article:published_time" content="2023-04-03T11:28:01.000Z">
-<meta property="article:modified_time" content="2023-04-03T11:30:17.282Z">
-<meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/1.png">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>GDB学习 - Hexo</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Hexo"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Hexo"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="1 调试入门及基础篇1-1 Linux C&amp;#x2F;C++调试准备工作Ubuntu: apt install gcc g++ make gdb 123456789101112#include&amp;lt;iostream&amp;gt;int main(int argc,char**argv)&amp;amp;#123;    int itest&amp;#x3D;100;    const char *str&amp;#x3D;&amp;quot;this is a"><meta property="og:type" content="article"><meta property="og:title" content="GDB学习"><meta property="og:url" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/"><meta property="og:site_name" content="Hexo"><meta property="og:description" content="1 调试入门及基础篇1-1 Linux C&amp;#x2F;C++调试准备工作Ubuntu: apt install gcc g++ make gdb 123456789101112#include&amp;lt;iostream&amp;gt;int main(int argc,char**argv)&amp;amp;#123;    int itest&amp;#x3D;100;    const char *str&amp;#x3D;&amp;quot;this is a"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/1.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/2.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/3.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/4.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/5.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/6.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/7.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/8.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/9.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/10.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/11.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/12.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/13.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/14.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/15.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/16.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/17.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/18.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/19.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/20.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/21.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/22.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/23.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/24.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/25.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/27.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/26.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/28.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/29.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/30.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/31.png"><meta property="og:image" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/32.png"><meta property="article:published_time" content="2023-04-03T11:28:01.000Z"><meta property="article:modified_time" content="2023-04-03T11:30:17.282Z"><meta property="article:author" content="John Doe"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/1.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/"},"headline":"GDB学习","image":["http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/1.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/2.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/3.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/4.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/5.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/6.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/7.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/8.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/9.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/10.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/11.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/12.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/13.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/14.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/15.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/16.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/17.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/18.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/19.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/20.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/21.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/22.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/23.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/24.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/25.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/27.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/26.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/28.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/29.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/30.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/31.png","http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/32.png"],"datePublished":"2023-04-03T11:28:01.000Z","dateModified":"2023-04-03T11:30:17.282Z","author":{"@type":"Person","name":"John Doe"},"publisher":{"@type":"Organization","name":"Hexo","logo":{"@type":"ImageObject"}},"description":"1 调试入门及基础篇1-1 Linux C&#x2F;C++调试准备工作Ubuntu: apt install gcc g++ make gdb 123456789101112#include&lt;iostream&gt;int main(int argc,char**argv)&amp;#123;    int itest&#x3D;100;    const char *str&#x3D;&quot;this is a"}</script><link rel="canonical" href="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
 
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
 
-  
-<meta name="generator" content="Hexo 6.3.0"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main"><article id="post-GDB学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/" class="article-date">
-  <time class="dt-published" datetime="2023-04-03T11:28:01.000Z" itemprop="datePublished">2023-04-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      GDB学习
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="1-调试入门及基础篇"><a href="#1-调试入门及基础篇" class="headerlink" title="1 调试入门及基础篇"></a>1 调试入门及基础篇</h2><h3 id="1-1-Linux-C-x2F-C-调试准备工作"><a href="#1-1-Linux-C-x2F-C-调试准备工作" class="headerlink" title="1-1 Linux C&#x2F;C++调试准备工作"></a>1-1 Linux C&#x2F;C++调试准备工作</h3><p>Ubuntu: apt install gcc g++ make gdb</p>
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-1-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Hexo</a></div><div class="navbar-menu"><div class="navbar-end"></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-04-03T11:28:01.000Z" title="2023/4/3 19:28:01">2023-04-03</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-04-03T11:30:17.282Z" title="2023/4/3 19:30:17">2023-04-03</time></span></div></div><h1 class="title is-3 is-size-4-mobile">GDB学习</h1><div class="content"><h2 id="1-调试入门及基础篇"><a href="#1-调试入门及基础篇" class="headerlink" title="1 调试入门及基础篇"></a>1 调试入门及基础篇</h2><h3 id="1-1-Linux-C-x2F-C-调试准备工作"><a href="#1-1-Linux-C-x2F-C-调试准备工作" class="headerlink" title="1-1 Linux C&#x2F;C++调试准备工作"></a>1-1 Linux C&#x2F;C++调试准备工作</h3><p>Ubuntu: apt install gcc g++ make gdb</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc,<span class="type">char</span>**argv)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> itest=<span class="number">100</span>;</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> *str=<span class="string">&quot;this is a test&quot;</span>;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;itest is &quot;</span> &lt;&lt; itest &lt;&lt; <span class="string">&quot;,str is &quot;</span> &lt;&lt; str &lt;&lt; std::endl;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;参数为:&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; argc; i++)&#123;</span><br><span class="line">        std::cout &lt;&lt; argv[i] &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Hello world\n&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>生成可调试的代码：g++ -g test.cpp -o test</p>
@@ -472,114 +373,11 @@
 <p>​		崩溃时自动生成core文件，需要将 ulimit -c 设置为 unlimted，文件名由&#x2F;proc&#x2F;sys&#x2F;kernel&#x2F;core_pattern决定</p>
 <p>​		<strong>查看问题：gdb 可执行文件 core文件</strong></p>
 <h3 id="4-6-无调试符号core-dump分析"><a href="#4-6-无调试符号core-dump分析" class="headerlink" title="4-6 无调试符号core dump分析"></a>4-6 无调试符号core dump分析</h3><p>不能用p打印变量，但可以查看寄存器，查看内存地址的值</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/" data-id="clg0r2wox000028tobgte07c8" data-title="GDB学习" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-  
-    <a href="/2023/04/03/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2023/04/03/GDB%E5%AD%A6%E4%B9%A0/">GDB学习</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/03/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2023 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.4.1.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
-</body>
-</html>
+</div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2023/04/03/hello-world/"><span class="level-item">Hello World</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><!--!--><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">Hexo</a><p class="is-size-7"><span>&copy; 2023 John Doe</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><!--!--><script src="/js/main.js" defer></script><!--!--></body></html>
