@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>剖析HTTPS - MK&#039;s Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="MK&#039;s Blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="MK&#039;s Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content=""><meta property="og:type" content="blog"><meta property="og:title" content="剖析HTTPS"><meta property="og:url" content="http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/"><meta property="og:site_name" content="MK&#039;s Blog"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/0.png"><meta property="og:image" content="http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/1.png"><meta property="og:image" content="http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/2.png"><meta property="og:image" content="http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/3.png"><meta property="og:image" content="http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/6.png"><meta property="og:image" content="http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/12.png"><meta property="og:image" content="http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/7.png"><meta property="og:image" content="http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/8.png"><meta property="og:image" content="http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/9.png"><meta property="og:image" content="http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/10.png"><meta property="og:image" content="http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/11.png"><meta property="og:image" content="http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/13.png"><meta property="og:image" content="http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/14.png"><meta property="og:image" content="http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/15.png"><meta property="og:image" content="http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/16.png"><meta property="og:image" content="http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/17.png"><meta property="og:image" content="http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/5.png"><meta property="og:image" content="http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/18.png"><meta property="og:image" content="http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/19.png"><meta property="article:published_time" content="2023-04-14T02:36:32.000Z"><meta property="article:modified_time" content="2023-04-14T11:59:59.217Z"><meta property="article:author" content="MK"><meta property="article:tag" content="计算机网络"><meta property="article:tag" content="https"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/0.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/"},"headline":"剖析HTTPS","image":["http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/0.png","http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/1.png","http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/2.png","http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/3.png","http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/6.png","http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/12.png","http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/7.png","http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/8.png","http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/9.png","http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/10.png","http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/11.png","http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/13.png","http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/14.png","http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/15.png","http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/16.png","http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/17.png","http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/5.png","http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/18.png","http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/19.png"],"datePublished":"2023-04-14T02:36:32.000Z","dateModified":"2023-04-14T11:59:59.217Z","author":{"@type":"Person","name":"MK"},"publisher":{"@type":"Organization","name":"MK's Blog","logo":{"@type":"ImageObject","url":{"text":"MK's Blog"}}},"description":""}</script><link rel="canonical" href="http://mkmq99.github.io/2023/04/14/%E5%89%96%E6%9E%90HTTPS/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">MK&#039;s Blog</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-04-14T02:36:32.000Z" title="2023/4/14 10:36:32">2023-04-14</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-04-14T11:59:59.217Z" title="2023/4/14 19:59:59">2023-04-14</time></span><span class="level-item"><a class="link-muted" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span><span class="level-item">16 minutes read (About 2398 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">剖析HTTPS</h1><div class="content"><p><img src="/2023/04/14/%E5%89%96%E6%9E%90HTTPS/0.png"></p>
+<span id="more"></span>
+
+<p>本来只是想仔细研究一下https，不过既然要做了，那就把整个网站访问的包都分析一下吧。本文将详解在edge浏览器输入 <a target="_blank" rel="noopener" href="https://oc.sjtu.edu.cn/">https://oc.sjtu.edu.cn</a> 会发生什么。</p>
+<h3 id="1-DNS"><a href="#1-DNS" class="headerlink" title="1 DNS"></a>1 DNS</h3><p>显然，第一步得知道域名对应的IP地址，所以会发送DNS报文。</p>
+<p><img src="/2023/04/14/%E5%89%96%E6%9E%90HTTPS/1.png"></p>
+<p>可以看到这里DNS报文都是两条两条发送回应的，原因应该是本人所处网络为IPV6环境，所以发送DNS报文时会发送一个IPV4版本的和一个IPV6版本的。</p>
+<p><img src="/2023/04/14/%E5%89%96%E6%9E%90HTTPS/2.png"></p>
+<p><img src="/2023/04/14/%E5%89%96%E6%9E%90HTTPS/3.png"></p>
+<p>A（Address）记录指定域名对应的IP地址，更多类型可看<a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/331012">DNS记录类型介绍(A记录、MX记录、NS记录等)-阿里云开发者社区 (aliyun.com)</a>了解。</p>
+<h3 id="2-TCP"><a href="#2-TCP" class="headerlink" title="2 TCP"></a>2 TCP</h3><p>既然知道了ip为202.120.35.235，这下可以对ip包进行筛选了，在wireshark使用ip.addr &#x3D;&#x3D; 202.120.35.235即可</p>
+<p><img src="/2023/04/14/%E5%89%96%E6%9E%90HTTPS/6.png"></p>
+<p>可以看到有两个TCP连接，这个蛮迷惑的，搜索后有一个解释为：</p>
+<blockquote>
+<p> 可以看到火狐浏览器中正常：一次请求只建立一次tcp连接。我们尝试了curl发起请求，抓包记录都是一次tcp连接。基本确定不是浏览器的共性，只是谷歌浏览器的个性。使用多个连接通常最容易想到的是加速访问，比如一个数据库连接不够用，可以建立多个连接（连接池复用连接）。</p>
+</blockquote>
+<p><img src="/2023/04/14/%E5%89%96%E6%9E%90HTTPS/12.png"></p>
+<p>但是数据包还是好多，可以使用tcp.stream eq 3追踪一条tcp流</p>
+<p><img src="/2023/04/14/%E5%89%96%E6%9E%90HTTPS/7.png"></p>
+<p>显然，数据包还是很多……</p>
+<p>前面是三次握手，没啥好说的。有一个点是来回的MSS不一样，这是在通告对方自己的MSS，然后取小的来。</p>
+<h3 id="3-TLSv1-2"><a href="#3-TLSv1-2" class="headerlink" title="3 TLSv1.2"></a>3 TLSv1.2</h3><p>这是我真正想要关注的东西，再加一条tls过滤条件，数据包可以看到有四个tls协议包。</p>
+<p><img src="/2023/04/14/%E5%89%96%E6%9E%90HTTPS/8.png"></p>
+<h4 id="3-1-第一次握手"><a href="#3-1-第一次握手" class="headerlink" title="3.1 第一次握手"></a>3.1 第一次握手</h4><p><strong>Client Hello</strong></p>
+<p>首先可以看到这个是TLS握手协议</p>
+<p><img src="/2023/04/14/%E5%89%96%E6%9E%90HTTPS/9.png"></p>
+<p>理论上来说，TLS主要分为两层，底层的是TLS记录协议，主要负责使用对称密码对消息进行加密；上层的是TLS握手协议，主要分为握手协议，密码规格变更协议、警告协议和应用数据协议4个部分。</p>
+<ul>
+<li><p>握手协议负责在客户端和服务器端商定密码算法和共享密钥，包括证书认证，是4个协议中最最复杂的部分。</p>
+</li>
+<li><p>密码规格变更协议负责向通信对象传达变更密码方式的信号</p>
+</li>
+<li><p>警告协议负责在发生错误的时候将错误传达给对方</p>
+</li>
+<li><p>应用数据协议负责将TLS承载的应用数据传达给通信对象的协议。</p>
+</li>
+</ul>
+<p><strong>[Client Hello]</strong> 给出了很多信息，包括</p>
+<ul>
+<li>可用版本号</li>
+<li>当前时间</li>
+<li>客户端随机数</li>
+<li>会话ID</li>
+<li>可用的密码套件清单</li>
+<li>可用的压缩方式清单</li>
+</ul>
+<p><img src="/2023/04/14/%E5%89%96%E6%9E%90HTTPS/10.png"></p>
+<h4 id="3-2-第二次握手"><a href="#3-2-第二次握手" class="headerlink" title="3.2 第二次握手"></a>3.2 第二次握手</h4><p><strong>Server Hello &amp; Certificate &amp; Server Hello Done</strong></p>
+<p>前面说过，握手协议包含四个部分，这里三个合并的消息都属于握手协议。</p>
+<h5 id="3-2-1-Server-Hello"><a href="#3-2-1-Server-Hello" class="headerlink" title="3.2.1 Server Hello"></a>3.2.1 Server Hello</h5><p>回应了 <strong>[Client Hello]</strong> 消息，回复内容包括</p>
+<ul>
+<li>使用的版本号</li>
+<li>当前时间</li>
+<li>服务端随机数</li>
+<li>会话ID</li>
+<li>使用的密码套件清单</li>
+<li>使用的压缩方式清单</li>
+</ul>
+<p><img src="/2023/04/14/%E5%89%96%E6%9E%90HTTPS/11.png"></p>
+<p>上图中服务端选择的算法套件是：<strong>TLS__RSA_WITH_AES_256_CBC_SHA (0x0035)</strong>, 它的意思是：</p>
+<p>密钥交换算法采用：RSA</p>
+<p>签名算法采用：RSA</p>
+<p>加密算法采用：AES对称算法，密钥长度为256bit, 模式为：CBC。</p>
+<p>摘要算法采用：SHA</p>
+<h5 id="3-2-2-Certificate"><a href="#3-2-2-Certificate" class="headerlink" title="3.2.2 Certificate"></a>3.2.2 Certificate</h5><p>发送服务端证书，这里发了两张证书</p>
+<p><img src="/2023/04/14/%E5%89%96%E6%9E%90HTTPS/13.png"></p>
+<h5 id="3-2-3-Server-Hello-Done"><a href="#3-2-3-Server-Hello-Done" class="headerlink" title="3.2.3 Server Hello Done"></a>3.2.3 Server Hello Done</h5><p>服务端发送 <strong>[Server Hello Done]</strong> 消息，告诉客户端，我已经把该给你的东西都给你了，本次打招呼完毕。</p>
+<p><img src="/2023/04/14/%E5%89%96%E6%9E%90HTTPS/14.png"></p>
+<h4 id="3-3-第三次握手"><a href="#3-3-第三次握手" class="headerlink" title="3.3 第三次握手"></a>3.3 第三次握手</h4><p><strong>Client Key Exchange &amp; Change Cipher Spec &amp; Encrypted Handshake Message</strong> </p>
+<p>这三个消息分别属于握手协议、密码规格变更协议、握手协议。</p>
+<h5 id="3-3-1-Client-Key-Exchange"><a href="#3-3-1-Client-Key-Exchange" class="headerlink" title="3.3.1 Client Key Exchange"></a>3.3.1 Client Key Exchange</h5><p>客户端验证完证书后，认为可信则继续往下走。接着，客户端就会生成一个新的随机数 (pre-master)，用服务器的 RSA 公钥加密该随机数，通过 <strong>[Client Key Exchange]</strong> 消息传给服务端。</p>
+<p><img src="/2023/04/14/%E5%89%96%E6%9E%90HTTPS/15.png"></p>
+<p>服务端收到后，用 RSA 私钥解密，得到客户端发来的随机数 (pre-master)。</p>
+<p>至此，<strong>客户端和服务端双方都共享了三个随机数，分别是 Client Random、Server Random、pre-master</strong>。于是，双方根据已经得到的三个随机数，生成<strong>会话密钥（Master Secret）</strong>，它是对称密钥，用于对后续的请求&#x2F;响应的数据加解密。</p>
+<h5 id="3-3-2-Change-Cipher-Spec"><a href="#3-3-2-Change-Cipher-Spec" class="headerlink" title="3.3.2 Change Cipher Spec"></a>3.3.2 Change Cipher Spec</h5><p>上一步生成了会话密钥，所以客户端发一个 **[Change Cipher Spec]**，告诉服务端开始使用加密方式发送消息。</p>
+<p><img src="/2023/04/14/%E5%89%96%E6%9E%90HTTPS/16.png"></p>
+<h5 id="3-3-3-Encrypted-Handshake-Message"><a href="#3-3-3-Encrypted-Handshake-Message" class="headerlink" title="3.3.3 Encrypted Handshake Message"></a>3.3.3 Encrypted Handshake Message</h5><p><strong>[Encrypted Handshake Message]</strong> 消息，把之前所有发送的数据做个<strong>摘要</strong>，再用会话密钥（master secret）加密一下，让服务器做个验证，验证加密通信<strong>是否可用</strong>和<strong>之前握手信息是否有被中途篡改过</strong>。</p>
+<p><img src="/2023/04/14/%E5%89%96%E6%9E%90HTTPS/17.png"></p>
+<h4 id="3-4-第四次握手"><a href="#3-4-第四次握手" class="headerlink" title="3.4 第四次握手"></a>3.4 第四次握手</h4><p><strong>Change Cipher Spec &amp; Encrypted Handshake Message</strong></p>
+<h5 id="3-4-1-Change-Cipher-Spec"><a href="#3-4-1-Change-Cipher-Spec" class="headerlink" title="3.4.1 Change Cipher Spec"></a>3.4.1 Change Cipher Spec</h5><p>服务端告诉客户端开始使用加密方式发送消息</p>
+<h5 id="3-4-2-Encrypted-Handshake-Message"><a href="#3-4-2-Encrypted-Handshake-Message" class="headerlink" title="3.4.2 Encrypted Handshake Message"></a>3.4.2 Encrypted Handshake Message</h5><p>和3.3.3功能一样</p>
+<h3 id="4-番外"><a href="#4-番外" class="headerlink" title="4 番外"></a>4 番外</h3><h4 id="4-1-DNS-CNAME记录"><a href="#4-1-DNS-CNAME记录" class="headerlink" title="4.1 DNS CNAME记录"></a>4.1 DNS CNAME记录</h4><p>这里扯一下DNS CNAME记录，是在访问 <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a> 时遇到的。</p>
+<p>一个DNS CNAME记录将一个主机名映射到另一个。这意味着你可以有多个具有相同IP地址的主机，但每个主机都有一个不同的名字。CANME的好处是：在下图例子中，如果我调整了 Web 服务器，将它迁移到另一台主机上，我只需修改 <code>webserver.fasionchan.com</code> 一个域名，其他专栏域名均无须调整。</p>
+<p><img src="/2023/04/14/%E5%89%96%E6%9E%90HTTPS/5.png"></p>
+<h4 id="4-2-RSA算法的缺陷"><a href="#4-2-RSA算法的缺陷" class="headerlink" title="4.2 RSA算法的缺陷"></a>4.2 RSA算法的缺陷</h4><p><strong>使用 RSA 密钥协商算法的最大问题是不支持前向保密</strong>。</p>
+<p>因为客户端传递随机数（用于生成对称加密密钥的条件之一）给服务端时使用的是公钥加密的，服务端收到后，会用私钥解密得到随机数。所以一旦服务端的私钥泄漏了，过去被第三方截获的所有 TLS 通讯密文都会被破解。</p>
+<p>为了解决这个问题，后面就出现了 ECDHE 密钥协商算法。</p>
+<h4 id="4-3-JA3和JA3S"><a href="#4-3-JA3和JA3S" class="headerlink" title="4.3 JA3和JA3S"></a>4.3 JA3和JA3S</h4><p>在 <strong>[Client Hello]</strong> 中包含一个字段叫 <code>JA3</code> ，在**[Server Hello]** 中包含字段 <code>JA3S</code>，这两者是什么？</p>
+<p><img src="/2023/04/14/%E5%89%96%E6%9E%90HTTPS/18.png"></p>
+<p><img src="/2023/04/14/%E5%89%96%E6%9E%90HTTPS/19.png"></p>
+<p><code>JA3(S)</code> 是为特定客户端与服务器之间的加密通信提供了具有更高的识别度的指纹，说白了就是 TLS 协商的指纹。它的用处是识别恶意客户端和服务器之间的 TLS 协商。</p>
+<p>例如，现在的 C2 服务器（Command and Control server，命令和控制服务器）与恶意客户端之间的通信往往都是套上 TLS 的，将其流量隐藏在噪声中来躲避 IDS&#x2F;IPS（入侵检测&#x2F;入侵预防），这样光从 ip&#x2F;域名这个维度去检测难免会漏掉一些。如果我们掌握了 C2 服务器与恶意客户端的 <code>JA3(S)</code>，即使恶意流量被加密且不知道 C2 服务器的 IP 地址或域名，我们仍然可以通过 TLS 指纹来识别恶意客户端和服务器之间的 TLS 协商。</p>
+<p>那么难道<code>JA3(S)</code>不能改变吗？当然是可以的，但是会提高成本：改个 ip 或者域名，比修改客户端程序方便多了。</p>
+<p><code>JA3S</code> 不能单独使用，必须与 <code>JA3</code> 结合使用才能更有效地进行检测或列入黑名单。当成对使用时，它还可以减少误报的数量。此外，如果我们只使用 <code>JA3</code> 指纹，我们很可能会看到稳定的流量，其中大部分是合规范的。<code>JA3+JA3S</code> 依旧不会非常准确，但是可以丰富我们检测威胁的维度，增加了攻击者的攻击成本。</p>
+<blockquote>
+<p>参考：</p>
+<p><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/331012">DNS记录类型介绍(A记录、MX记录、NS记录等)-阿里云开发者社区 (aliyun.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://powerdmarc.com/zh/what-is-a-dns-cname-record/">什么是DNS CNAME记录？CNAME记录的简易指南 (powerdmarc.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://fasionchan.com/network/dns/record-types/">DNS记录类型 | 小菜学网络 (fasionchan.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43275277/article/details/119858417">(56条消息) 谷歌浏览器，一次get请求建立两次tcp连接_wireshark谷歌_码农小麦的博客-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/65645635">(99+ 封私信 &#x2F; 80 条消息) 为什么TCP的MSS协商没有按照小的来？ - 知乎 (zhihu.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://xiaolincoding.com/network/2_http/https_rsa.html#tls-%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B">3.3 HTTPS RSA 握手解析 | 小林coding (xiaolincoding.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.tr0y.wang/2020/06/28/ja3/">JA3(S)，简单而有效的 TLS 指纹 - Tr0y’s Blog</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cute/p/16347377.html">C2 - katago - 博客园 (cnblogs.com)</a></p>
+</blockquote>
+</div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><a class="link-muted mr-2" rel="tag" href="/tags/https/">https</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2023/04/12/%E4%BD%BF%E7%94%A8chatgpt%E7%BB%83%E4%B9%A0gdb/"><span class="level-item">使用chatgpt练习gdb</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="MK"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">MK</p><p class="is-size-6 is-block">MKMQ99</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Shanghai</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">7</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">10</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/MKMQ99" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/MKMQ99"><i class="fab fa-github"></i></a></div></div></div><div class="card widget is-sticky" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#1-DNS"><span class="level-left"><span class="level-item">1</span><span class="level-item">1 DNS</span></span></a></li><li><a class="level is-mobile" href="#2-TCP"><span class="level-left"><span class="level-item">2</span><span class="level-item">2 TCP</span></span></a></li><li><a class="level is-mobile" href="#3-TLSv1-2"><span class="level-left"><span class="level-item">3</span><span class="level-item">3 TLSv1.2</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#3-1-第一次握手"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">3.1 第一次握手</span></span></a></li><li><a class="level is-mobile" href="#3-2-第二次握手"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">3.2 第二次握手</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#3-2-1-Server-Hello"><span class="level-left"><span class="level-item">3.2.1</span><span class="level-item">3.2.1 Server Hello</span></span></a></li><li><a class="level is-mobile" href="#3-2-2-Certificate"><span class="level-left"><span class="level-item">3.2.2</span><span class="level-item">3.2.2 Certificate</span></span></a></li><li><a class="level is-mobile" href="#3-2-3-Server-Hello-Done"><span class="level-left"><span class="level-item">3.2.3</span><span class="level-item">3.2.3 Server Hello Done</span></span></a></li></ul></li><li><a class="level is-mobile" href="#3-3-第三次握手"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">3.3 第三次握手</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#3-3-1-Client-Key-Exchange"><span class="level-left"><span class="level-item">3.3.1</span><span class="level-item">3.3.1 Client Key Exchange</span></span></a></li><li><a class="level is-mobile" href="#3-3-2-Change-Cipher-Spec"><span class="level-left"><span class="level-item">3.3.2</span><span class="level-item">3.3.2 Change Cipher Spec</span></span></a></li><li><a class="level is-mobile" href="#3-3-3-Encrypted-Handshake-Message"><span class="level-left"><span class="level-item">3.3.3</span><span class="level-item">3.3.3 Encrypted Handshake Message</span></span></a></li></ul></li><li><a class="level is-mobile" href="#3-4-第四次握手"><span class="level-left"><span class="level-item">3.4</span><span class="level-item">3.4 第四次握手</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#3-4-1-Change-Cipher-Spec"><span class="level-left"><span class="level-item">3.4.1</span><span class="level-item">3.4.1 Change Cipher Spec</span></span></a></li><li><a class="level is-mobile" href="#3-4-2-Encrypted-Handshake-Message"><span class="level-left"><span class="level-item">3.4.2</span><span class="level-item">3.4.2 Encrypted Handshake Message</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#4-番外"><span class="level-left"><span class="level-item">4</span><span class="level-item">4 番外</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#4-1-DNS-CNAME记录"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">4.1 DNS CNAME记录</span></span></a></li><li><a class="level is-mobile" href="#4-2-RSA算法的缺陷"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">4.2 RSA算法的缺陷</span></span></a></li><li><a class="level is-mobile" href="#4-3-JA3和JA3S"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">4.3 JA3和JA3S</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/C-Tools/"><span class="level-start"><span class="level-item">C++ Tools</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="level-start"><span class="level-item">数据库</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"><span class="level-start"><span class="level-item">数据结构与算法</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%9D%82%E9%A1%B9/"><span class="level-start"><span class="level-item">杂项</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><span class="level-start"><span class="level-item">计算机网络</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-14T02:36:32.000Z">2023-04-14</time></p><p class="title"><a href="/2023/04/14/%E5%89%96%E6%9E%90HTTPS/">剖析HTTPS</a></p><p class="categories"><a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-12T03:49:50.000Z">2023-04-12</time></p><p class="title"><a href="/2023/04/12/%E4%BD%BF%E7%94%A8chatgpt%E7%BB%83%E4%B9%A0gdb/">使用chatgpt练习gdb</a></p><p class="categories"><a href="/categories/C-Tools/">C++ Tools</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-11T02:19:49.000Z">2023-04-11</time></p><p class="title"><a href="/2023/04/11/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">常见排序算法</a></p><p class="categories"><a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-10T11:11:53.000Z">2023-04-10</time></p><p class="title"><a href="/2023/04/10/%E5%B8%B8%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">常用设计模式</a></p><p class="categories"><a href="/categories/%E6%9D%82%E9%A1%B9/">杂项</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-05T02:15:12.000Z">2023-04-05</time></p><p class="title"><a href="/2023/04/05/MySQL%E4%BA%8B%E5%8A%A1%E5%9F%BA%E7%A1%80%E4%B8%8E%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">MySQL事务基础与实现原理</a></p><p class="categories"><a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li></ul></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">MK&#039;s Blog</a><p class="is-size-7"><span>&copy; 2023 MK</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
