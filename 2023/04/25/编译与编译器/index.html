@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>编译与编译器 - MK&#039;s Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="MK&#039;s Blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="MK&#039;s Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content=""><meta property="og:type" content="blog"><meta property="og:title" content="编译与编译器"><meta property="og:url" content="http://mkmq99.github.io/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/"><meta property="og:site_name" content="MK&#039;s Blog"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://mkmq99.github.io/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/0.png"><meta property="og:image" content="http://mkmq99.github.io/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/1.png"><meta property="og:image" content="http://mkmq99.github.io/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/2.png"><meta property="og:image" content="http://mkmq99.github.io/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/3.png"><meta property="og:image" content="http://mkmq99.github.io/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/4.png"><meta property="og:image" content="http://mkmq99.github.io/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/5.png"><meta property="og:image" content="http://mkmq99.github.io/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/6.png"><meta property="article:published_time" content="2023-04-25T06:36:41.000Z"><meta property="article:modified_time" content="2023-04-25T08:39:58.485Z"><meta property="article:author" content="MK"><meta property="article:tag" content="编译原理"><meta property="article:tag" content="编译器"><meta property="article:tag" content="LLVM"><meta property="article:tag" content="gcc"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://mkmq99.github.io/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/0.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://mkmq99.github.io/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/"},"headline":"编译与编译器","image":["http://mkmq99.github.io/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/0.png","http://mkmq99.github.io/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/1.png","http://mkmq99.github.io/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/2.png","http://mkmq99.github.io/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/3.png","http://mkmq99.github.io/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/4.png","http://mkmq99.github.io/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/5.png","http://mkmq99.github.io/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/6.png"],"datePublished":"2023-04-25T06:36:41.000Z","dateModified":"2023-04-25T08:39:58.485Z","author":{"@type":"Person","name":"MK"},"publisher":{"@type":"Organization","name":"MK's Blog","logo":{"@type":"ImageObject","url":{"text":"MK's Blog"}}},"description":""}</script><link rel="canonical" href="http://mkmq99.github.io/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">MK&#039;s Blog</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-04-25T06:36:41.000Z" title="2023/4/25 14:36:41">2023-04-25</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-04-25T08:39:58.485Z" title="2023/4/25 16:39:58">2023-04-25</time></span><span class="level-item"><a class="link-muted" href="/categories/%E6%9D%82%E9%A1%B9/">杂项</a></span><span class="level-item">19 minutes read (About 2899 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">编译与编译器</h1><div class="content"><p><img src="/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/0.png"></p>
+<span id="more"></span>
+
+<h2 id="1-编译"><a href="#1-编译" class="headerlink" title="1 编译"></a>1 编译</h2><p>一般认为编译共分为4个阶段，<strong>预处理（Preprocessing）、编译（Compilation）、汇编（Assembly）、链接（Linking）</strong>。执行这四个阶段的程序（<strong>预处理器、编译器、汇编器、和链接器</strong>）一起构成了编译系统。</p>
+<p><img src="/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/1.png"></p>
+<h3 id="1-1-预处理"><a href="#1-1-预处理" class="headerlink" title="1.1 预处理"></a>1.1 预处理</h3><ol>
+<li>预处理器（cpp）将所有的#define删除，并且展开所有的宏定义。</li>
+<li>处理所有的条件预编译指令，比如#if、#ifdef、#elif、#else、#endif等。</li>
+<li>处理#include预编译指令，将被包含的文件直接插入到预编译指令的位置。</li>
+<li>删除所有的注释。</li>
+<li>添加行号和文件标识，以便编译时产生调试用的行号及编译错误警告行号。</li>
+<li>保留所有的#pragma编译器指令，因为编译器需要使用它们。</li>
+</ol>
+<p>使用<code>gcc -E hello.c -o hello.i</code>命令来进行预处理， 预处理得到的另一个程序通常是以.i作为文件扩展名。</p>
+<h3 id="1-2-编译"><a href="#1-2-编译" class="headerlink" title="1.2 编译"></a>1.2 编译</h3><p>编译器（ccl）将预处理完的文本文件 hello.i 进行一系列的词法分析、语法分析、语义分析和优化，翻译成文本文件 hello.s，它包含一个汇编语言程序。</p>
+<p>编译的过程具体可以分为<strong>词法分析、语法分析、语义分析、中间代码生成、代码优化、目标代码生成</strong>六步。</p>
+<h4 id="1-2-1-词法分析"><a href="#1-2-1-词法分析" class="headerlink" title="1.2.1 词法分析"></a>1.2.1 词法分析</h4><p>编译器读入源代码，经过词法分析器识别出Token，把字符串转换成一个个Token。<br>Token的类型包括：关键字、标识符、字面量、操作符、界符等。</p>
+<p>lex工具可实现词法扫描。</p>
+<h4 id="1-2-2-语法分析"><a href="#1-2-2-语法分析" class="headerlink" title="1.2.2 语法分析"></a>1.2.2 语法分析</h4><p>语法分析阶段把Token串，转换成一个体现语法规则的、树状数据结构，即抽象语法树AST。<br><strong>AST树反映了程序的语法结构。</strong></p>
+<p>yacc工具可实现语法分析(yacc: Yet Another Compiler Compiler)。</p>
+<p>比如下面对应的一段C语言代码，对应的AST抽象语法树如下所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">foo</span><span class="params">(<span class="type">int</span> a)</span>&#123;</span><br><span class="line">    <span class="type">int</span> b = a + <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">return</span> b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/2.png"></p>
+<p>AST树长成什么样，由语法的结构有关。<br>比如上面C语言代码中对函数的语法定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function := type name parameters functionBody</span><br><span class="line">parameters:= parameter*                          </span><br><span class="line">functionBody:= stmt returnStatement</span><br></pre></td></tr></table></figure>
+
+<p>语法分析器就按照语法定义进行解析，就是从上到下匹配的过程。<br>也就是先匹配function的规则，匹配函数类型type、函数名name、函数参数parameters、函数体<br>当匹配函数参数时，就去匹配parameters的规则<br>当匹配函数体时，函数体由一个个语句组成，就去匹配各个语句stmt的规则</p>
+<p>生成 AST 以后，程序的语法结构就很清晰了，但这棵树到底代表了什么意思，我们目前仍然不能完全确定，要在语义分析阶段确定。<strong>为什么要把程序转换成AST这么一颗树，因为编译器不像人能直接理解语句的含义，AST树更有结构性，后续阶段可以针对这颗树做各种分析！</strong></p>
+<h4 id="1-2-3-语义分析"><a href="#1-2-3-语义分析" class="headerlink" title="1.2.3 语义分析"></a>1.2.3 语义分析</h4><p>语义分析阶段的任务：理解语义，语句要做什么。<br>比如+号要执行加法、&#x3D;号要执行赋值、for结构要去实现循环、if结构实现判断。<br>所以语义阶段要做的内容有：上下文分析（包括引用消解、类型分析与检查等）</p>
+<p>引用消解：找到变量所在的作用域，一个变量作用范围属于全局还是局部。<br>类型识别：比如执行a+3，需要识别出变量a的类型，因为浮点数和整型执行不一样，要执行不同的运算方式。<br>类型检查：比如int b &#x3D; a + 3，是否可以进行定义赋值。等号右边的表达式必须返回一个整型的数据、或则能够自动转换成整型的数据，才能够对类型为整型的变量b进行复制。</p>
+<p>比如之前的一段C语言代码，经过语义分析后获得的信息（引用消解信息、类型信息），可以在AST上进行标注，形成下面的“带有标注的语法树”，让编译器更好的理解程序的语义。</p>
+<p><img src="/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/3.png"></p>
+<p>也会将这些上下文信息存入“符号表”结构中，便于各阶段查询上下文信息。<br>符号表是有层次的结构：我们只需要逐级向上查找就能找到变量、函数等的信息(作用域、类型等)</p>
+<p><img src="/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/4.png"></p>
+<p>接下来就可以解释执行：对于一门解释型的语言，到这里就可以去直接执行语义了（一般还是要生成中间代码，但是原理上这里是可以执行了）（编译型语言需要生成目标代码，而解释性语言只需要解释器去执行语义就可以了。）</p>
+<p>实现AST的解释器：在语法分析后有了程序的抽象语法树，在语义分析后有了“带有标注的AST”和符号表后，就可以深度优先遍历AST，并且一边遍历一边执行结点的语义规则。整个遍历的过程就是执行代码的过程。</p>
+<p>举一个解释执行的例子，比如执行下面的语义：</p>
+<ul>
+<li>遇到语法树中的add “+”节点：把两个子节点的值进行相加，作为“+”节点的值。</li>
+<li>遇到语法树中的变量节点(右值)：就取出变量的值。</li>
+<li>遇到字面量比如数字2：返回这个字面量代表的数值2。</li>
+</ul>
+<h4 id="1-2-4-中间代码生成"><a href="#1-2-4-中间代码生成" class="headerlink" title="1.2.4 中间代码生成"></a>1.2.4 中间代码生成</h4><p>在编译前端完成后(编译器已经理解了词法和语义)，编译器可以直接解释执行、或则直接生成目标代码。对于不同架构的CPU，还需要生成不同的汇编代码，如果对每一种汇编代码做优化就很繁琐了。所以我们需要增加一个环节：生成中间代码IR，统一优化后中间代码，再去将中间代码生成目标代码。</p>
+<p>中间代码使得编译器被分为前端和后端。编译器前端负责产生机器无关的中间代码；编译器后端将中间代码转化为目标机器代码。</p>
+<p>中间代码IR的两个用途：<strong>解释执行 、代码优化</strong></p>
+<p>解释执行：解释型语言，比如Python和Java，生成IR后就能直接执行了，也就是前面举出的例子。</p>
+<p>优化代码：比如LLVM等工具；在生成代码后需要做大量的优化工作，而很多优化工作没必要使用汇编代码来做(因为不同CPU体系的汇编语言不同)，而可以基于IR用统一的算法来完成，降低编译器适配不同CPU的复杂性。</p>
+<h4 id="1-2-5-代码优化"><a href="#1-2-5-代码优化" class="headerlink" title="1.2.5 代码优化"></a>1.2.5 代码优化</h4><p>优化手段包括：</p>
+<ul>
+<li>删除公共子表达式</li>
+<li>删除无用代码</li>
+<li>常量合并</li>
+<li>代码移动</li>
+<li>强度削弱</li>
+<li>删除归纳变量</li>
+<li>…</li>
+</ul>
+<h4 id="1-2-6-目标代码生成"><a href="#1-2-6-目标代码生成" class="headerlink" title="1.2.6 目标代码生成"></a>1.2.6 目标代码生成</h4><p>代码生成的过程，其实很简单，就是将中间代码IR逐个翻译成想要的汇编的代码。</p>
+<h3 id="1-3-汇编"><a href="#1-3-汇编" class="headerlink" title="1.3 汇编"></a>1.3 汇编</h3><p>汇编器（as）将hello.s翻译成机器语言指令，把这些指令打包成一种叫做<strong>可重定位目标程序</strong>的格式，并将结果保存在目标文件hello.o中，hello.o是一个二进制文件。</p>
+<h3 id="1-4-链接"><a href="#1-4-链接" class="headerlink" title="1.4 链接"></a>1.4 链接</h3><p>hello程序调用了printf函数，它存在于一个名为printf.o的单独的预编译好了的目标文件中，而这个文件必须以某种方式合并到我们的hello.o程序中。连接器（ld）就负责处理这种合并。结果就得到了hello文件，它是一个<strong>可执行目标文件</strong>（或者称为<strong>可执行文件</strong>），可以被加载到内存中，由系统执行。（链接程序运行需要的一大堆目标文件，以及所依赖的其它库文件，最后生成可执行文件）。</p>
+<h2 id="2-LLVM"><a href="#2-LLVM" class="headerlink" title="2 LLVM"></a>2 LLVM</h2><p>LLVM 是 Low Level Virtual Machine（低级虚拟机）的简称，是一款编译器框架。但是它本质上并不是虚拟机，核心其实准确点应该是编译器相关支持。主要是支持代码优化、链接、代码生成、机器码生成。当然有的时候内部llc给人感觉确实是类似解释型语言。现在 LLVM 已经集成非常多的优点，模块化设计让程序员可以绕开繁琐的操作，可以快速实现一个编译器并且运行。</p>
+<h3 id="2-1-编译器架构"><a href="#2-1-编译器架构" class="headerlink" title="2.1 编译器架构"></a>2.1 编译器架构</h3><p>传统编译器的结构分为前端、中端和后端</p>
+<p><strong>Frontend</strong>:前端，将高级语言的代码转换成编译器所对应的中间代码。其中操作有词法分析、语法分析、语义分析、中间代码生成</p>
+<p><strong>Optimizer</strong>:中端，对中间代码进行优化。（<strong>代码优化其实就是编译器对代码进行简介，整洁等等的操作。</strong>）</p>
+<p><strong>Backend</strong>:后端，对中间代码进行转换成机器码Opcode进行运行。本质上编译器到这里已经结束了。</p>
+<p><img src="/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/5.png"></p>
+<p>但是这种架构的编译器比如GCC有很多缺点，因为GCC前后端都是耦合在一起，想支持新的语言和处理器架构开发起来非常非常困难。</p>
+<h3 id="2-2-LLVM"><a href="#2-2-LLVM" class="headerlink" title="2.2 LLVM"></a>2.2 LLVM</h3><p>LLVM与GCC对比，它统一了LLVM IR（中端），如果需要开发新的处理器架构后端，那么只需要开发后端即可。</p>
+<p>LLVM，除了后端模块化，连前端也实现了模块化。开发者可以自定义前端规则等等，开发一门自己的编程语言。</p>
+<p><img src="/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/6.png"></p>
+<h4 id="2-2-1-Clang"><a href="#2-2-1-Clang" class="headerlink" title="2.2.1 Clang"></a>2.2.1 Clang</h4><p>Clang本质上是LLVM衍生出来的前端项目，由Apple开发。它是直接支持了C&#x2F;C++&#x2F;ObC++作为LLVM前端将其转化为LLVM IR，再从IR转换为后端机器码。这样子可以一个前端实现多个后端支持。</p>
+<blockquote>
+<p>参考：</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/476697014">程序详细编译过程（预处理、编译、汇编、链接） - 知乎 (zhihu.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/fisherss/p/13905395.html">编译原理入门篇|一篇文章理解编译全过程 - fishers - 博客园 (cnblogs.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44226857/article/details/104380179">(58条消息) 编译原理（8）：代码优化_下列哪些优化方法通常用于中间代码优化_逢青丶的博客-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/617808722">LLVM 编译器框架与流程分析 - 知乎 (zhihu.com)</a></p>
+</blockquote>
+</div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a><a class="link-muted mr-2" rel="tag" href="/tags/%E7%BC%96%E8%AF%91%E5%99%A8/">编译器</a><a class="link-muted mr-2" rel="tag" href="/tags/LLVM/">LLVM</a><a class="link-muted mr-2" rel="tag" href="/tags/gcc/">gcc</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2023/04/24/CMake%E5%AD%A6%E4%B9%A0/"><span class="level-item">CMake学习</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="MK"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">MK</p><p class="is-size-6 is-block">MKMQ99</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Shanghai</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">14</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">8</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">24</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/MKMQ99" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/MKMQ99"><i class="fab fa-github"></i></a></div></div></div><div class="card widget is-sticky" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#1-编译"><span class="level-left"><span class="level-item">1</span><span class="level-item">1 编译</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-1-预处理"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">1.1 预处理</span></span></a></li><li><a class="level is-mobile" href="#1-2-编译"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">1.2 编译</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-2-1-词法分析"><span class="level-left"><span class="level-item">1.2.1</span><span class="level-item">1.2.1 词法分析</span></span></a></li><li><a class="level is-mobile" href="#1-2-2-语法分析"><span class="level-left"><span class="level-item">1.2.2</span><span class="level-item">1.2.2 语法分析</span></span></a></li><li><a class="level is-mobile" href="#1-2-3-语义分析"><span class="level-left"><span class="level-item">1.2.3</span><span class="level-item">1.2.3 语义分析</span></span></a></li><li><a class="level is-mobile" href="#1-2-4-中间代码生成"><span class="level-left"><span class="level-item">1.2.4</span><span class="level-item">1.2.4 中间代码生成</span></span></a></li><li><a class="level is-mobile" href="#1-2-5-代码优化"><span class="level-left"><span class="level-item">1.2.5</span><span class="level-item">1.2.5 代码优化</span></span></a></li><li><a class="level is-mobile" href="#1-2-6-目标代码生成"><span class="level-left"><span class="level-item">1.2.6</span><span class="level-item">1.2.6 目标代码生成</span></span></a></li></ul></li><li><a class="level is-mobile" href="#1-3-汇编"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">1.3 汇编</span></span></a></li><li><a class="level is-mobile" href="#1-4-链接"><span class="level-left"><span class="level-item">1.4</span><span class="level-item">1.4 链接</span></span></a></li></ul></li><li><a class="level is-mobile" href="#2-LLVM"><span class="level-left"><span class="level-item">2</span><span class="level-item">2 LLVM</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#2-1-编译器架构"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">2.1 编译器架构</span></span></a></li><li><a class="level is-mobile" href="#2-2-LLVM"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">2.2 LLVM</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#2-2-1-Clang"><span class="level-left"><span class="level-item">2.2.1</span><span class="level-item">2.2.1 Clang</span></span></a></li></ul></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/C/"><span class="level-start"><span class="level-item">C++</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/C-Tools/"><span class="level-start"><span class="level-item">C++ Tools</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"><span class="level-start"><span class="level-item">并发编程</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="level-start"><span class="level-item">数据库</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"><span class="level-start"><span class="level-item">数据结构与算法</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"><span class="level-start"><span class="level-item">服务器</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%9D%82%E9%A1%B9/"><span class="level-start"><span class="level-item">杂项</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><span class="level-start"><span class="level-item">计算机网络</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-25T06:36:41.000Z">2023-04-25</time></p><p class="title"><a href="/2023/04/25/%E7%BC%96%E8%AF%91%E4%B8%8E%E7%BC%96%E8%AF%91%E5%99%A8/">编译与编译器</a></p><p class="categories"><a href="/categories/%E6%9D%82%E9%A1%B9/">杂项</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-24T06:20:01.000Z">2023-04-24</time></p><p class="title"><a href="/2023/04/24/CMake%E5%AD%A6%E4%B9%A0/">CMake学习</a></p><p class="categories"><a href="/categories/C-Tools/">C++ Tools</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-22T13:23:33.000Z">2023-04-22</time></p><p class="title"><a href="/2023/04/22/myMuduo%E5%9B%9E%E9%A1%BE%E4%BA%8C%EF%BC%9A%E5%85%B6%E4%BB%96%E9%83%A8%E5%88%86/">myMuduo回顾二：其他部分</a></p><p class="categories"><a href="/categories/C/">C++</a> / <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-22T13:15:01.000Z">2023-04-22</time></p><p class="title"><a href="/2023/04/22/myMuduo%E5%9B%9E%E9%A1%BE%E4%B8%80%EF%BC%9A%E7%BB%84%E4%BB%B6%E4%B8%8E%E6%95%B4%E4%BD%93%E9%80%BB%E8%BE%91/">myMuduo回顾一：组件与整体逻辑</a></p><p class="categories"><a href="/categories/C/">C++</a> / <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-18T11:58:03.000Z">2023-04-18</time></p><p class="title"><a href="/2023/04/18/%E6%97%A0%E9%94%81%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%88-C/">无锁数据结构-栈(C++)</a></p><p class="categories"><a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a> / <a href="/categories/C/">C++</a> / <a href="/categories/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">14</span></span></a></li></ul></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">MK&#039;s Blog</a><p class="is-size-7"><span>&copy; 2023 MK</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
